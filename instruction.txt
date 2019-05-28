@@ -1,0 +1,52 @@
+##---------------------------------------
+##---------------README------------------
+##---------------------------------------
+
+Instruction for converting .c modules in Python application using SWIG and MinGW
+
+1. Install SWIG (during instalation select Python) 
+2. Add path to swig.exe in enviroment variable
+3. Install MinGW 
+4. Add path to gcc.exe (..\MinGW\bin) in environment variable
+5. Create .c(.h), .i files
+6. Open cmd and go to the folder with .c(.h) and .i files 
+7. Execute the command
+
+	1.swig -python NAME_OF_FILE.i
+	##swig create .c and .py files
+
+	2.gcc -c NAME_OF_FILE.c -I PATH_TO_include_FOLDER (for example C:\Python37\include)
+	##create NAME_OF_FILE.o
+
+	3.gcc -shared NAME_OF_FILE.o -o _NAME_OF_FILE.pyd -L PATH_TO_libs_FOLDER (for example C:\Python37\libs) -l python37
+	##create _NAME_OF_FILE.pyd
+
+8. Copy .py and .pyd files to the folder of main Python application
+
+DONE!
+
+##---------------------------------------
+##---------Hello World example-----------
+##---------------------------------------
+
+Hello world! .c and .i files are in Hello_world folder
+
+Commands for this example (Command Window):
+
+1. swig -python my_f.i
+2. gcc -c my_f_wrap.c -I PATH_TO_include_FOLDER
+3. gcc -shared my_f_wrap.o -o _cube.pyd -L PATH_TO_libs_FOLDER
+
+Code in .py file 
+
+>> import cube
+>> cube.cube(1)
+
+##---------------------------------------
+##-------For more information use--------
+##---------------------------------------
+
+https://www.youtube.com/watch?v=YhAFOBcSoLw
+http://www.swig.org/
+
+	
